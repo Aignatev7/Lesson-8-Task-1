@@ -3,20 +3,24 @@
 
 int function(std::string str, int forbidden_length) {
 	int len = str.length();
-	
-	if (len != forbidden_length) {
+
+	if (len == forbidden_length)
+		throw std::exception();
+	return len;
+
+	/*if (len != forbidden_length) {
 		return len;
 	}
-	throw "bad_length";
+	throw "bad_length";*/
 }
 
 int main() {
 	SetConsoleCP(1251);							//устанавливает кодировку ввода из консоли и из редактора кода
 	SetConsoleOutputCP(1251);					//устанавливает кодировку вывода на консоль
-	int forbidden_length;
+	int forbidden_len;
 	std::string str;
 	std::cout << "Введите запретную длину: ";
-	std::cin >> forbidden_length;
+	std::cin >> forbidden_len;
 
 	do {
 		std::cout << "Введите слово: ";
@@ -24,15 +28,15 @@ int main() {
 
 		try
 		{
-			std::cout << "Длина слова " << "''" << str << "''" << " равна " << function(str, forbidden_length) << std::endl;
+			std::cout << "Длина слова " << "''" << str << "''" << " равна " << function(str, forbidden_len) << std::endl;
 		}
-		catch (const std::string* as)
+
+		catch (const std::exception& err)
 		{
-			{ std::cout << "Вы ввели слово запретной длины! До свидания" << std::endl; }
+			std::cout << "Вы ввели слово запретной длины! До свидания" << std::endl;
 		}
 
-	} while (function(str, forbidden_length) != forbidden_length);
-
+	} while (function(str, forbidden_len) != forbidden_len);
 }
 
 
