@@ -1,5 +1,14 @@
 #include <iostream>
 #include <windows.h>						   //библиотека windows.h позволяет взаимодействовать с ОС и вызывать определенные системные команды
+#include <exception>
+
+class exception : public std::domain_error { public: using domain_error::domain_error; };
+
+class runtime_error : public exception {
+public:
+	
+	explicit runtime_error(const char* message);
+};
 
 int function(std::string str, int forbidden_length) {
 	int len = str.length();
@@ -7,11 +16,6 @@ int function(std::string str, int forbidden_length) {
 	if (len == forbidden_length)
 		throw std::exception();
 	return len;
-
-	/*if (len != forbidden_length) {
-		return len;
-	}
-	throw "bad_length";*/
 }
 
 int main() {
@@ -33,7 +37,7 @@ int main() {
 
 		catch (const std::exception& err)
 		{
-			std::cout << "Вы ввели слово запретной длины! До свидания" << std::endl;
+			std::cout << "Вы ввели слово запретной длины! До свидания" << err.what() << std::endl;
 		}
 
 	} while (function(str, forbidden_len) != forbidden_len);
