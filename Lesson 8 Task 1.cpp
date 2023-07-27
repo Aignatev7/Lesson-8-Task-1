@@ -2,19 +2,11 @@
 #include <windows.h>						   //библиотека windows.h позволяет взаимодействовать с ОС и вызывать определенные системные команды
 #include <exception>
 
-class exception : public std::domain_error { public: using domain_error::domain_error; };
-
-class runtime_error : public exception {
-public:
-	
-	explicit runtime_error(const char* message);
-};
-
 int function(std::string str, int forbidden_length) {
 	int len = str.length();
 
 	if (len == forbidden_length)
-		throw std::exception();
+		throw std::runtime_error("bad_length");
 	return len;
 }
 
