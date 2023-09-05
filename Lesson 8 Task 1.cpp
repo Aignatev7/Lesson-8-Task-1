@@ -21,18 +21,17 @@ int main() {
 	do {
 		std::cout << "Введите слово: ";
 		std::cin >> str;
+	} while (str.length() != forbidden_len);
 
-		try
-		{
-			std::cout << "Длина слова " << "''" << str << "''" << " равна " << function(str, forbidden_len) << std::endl;
-		}
+	try
+	{
+		std::cout << "Длина слова " << "''" << str << "''" << " равна " << function(str, forbidden_len) << std::endl;
+	}
 
-		catch (const std::exception& err)
-		{
-			std::cout << "Вы ввели слово запретной длины! До свидания" << err.what() << std::endl;
-		}
-
-	} while (function(str, forbidden_len) != forbidden_len);
+	catch (const std::exception& err)
+	{
+		std::cout << "Вы ввели слово запретной длины! До свидания" << "\n" << err.what() << std::endl;
+	}
 }
 
 
