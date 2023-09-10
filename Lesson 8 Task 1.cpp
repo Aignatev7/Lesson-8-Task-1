@@ -18,14 +18,13 @@ int main() {
 	std::cout << "¬ведите запретную длину: ";
 	std::cin >> forbidden_len;
 
-	do {
-		std::cout << "¬ведите слово: ";
-		std::cin >> str;
-	} while (str.length() != forbidden_len);
-
 	try
 	{
-		std::cout << "ƒлина слова " << "''" << str << "''" << " равна " << function(str, forbidden_len) << std::endl;
+		do {
+			std::cout << "¬ведите слово: ";
+			std::cin >> str;
+			std::cout << "ƒлина слова " << "''" << str << "''" << " равна " << function(str, forbidden_len) << std::endl;
+		} while (str.length() != forbidden_len);		
 	}
 
 	catch (const std::exception& err)
